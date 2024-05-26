@@ -1,6 +1,6 @@
 import SwiftUI
 
-@available(iOS 15.0, *)
+@available(iOS 17.0, *)
 public struct OtpView:View {
     
     private var activeIndicatorColor: Color
@@ -18,11 +18,13 @@ public struct OtpView:View {
         self.doSomething = doSomething
     }
     public var body: some View {
-        HStack(spacing: 0){
+        HStack(spacing: 10) {
             ForEach(0...length-1, id: \.self) { index in
                 OTPTextBox(index)
             }
+            .frame(maxWidth: 50)
         }
+        .padding(.horizontal)
         .background(content: {
             TextField("", text: $otpText.limit(length))
                 .keyboardType(.numberPad)
@@ -43,7 +45,6 @@ public struct OtpView:View {
                 }
         })
         .contentShape(Rectangle())
-        .padding(.horizontal)
         .onTapGesture {
             isKeyboardShowing = true
         }
@@ -61,10 +62,11 @@ public struct OtpView:View {
                 Text(" ")
             }
         }
-        .frame(width: 45, height: 45)
+        .fontDesign(.monospaced)
+        .frame(width: 50, height: 80)
         .background {
             let status = (isKeyboardShowing && otpText.count == index)
-            RoundedRectangle(cornerRadius: 6, style: .continuous)
+            RoundedRectangle(cornerRadius: 4, style: .continuous)
                 .stroke(status ? activeIndicatorColor : inactiveIndicatorColor)
                 .animation(.easeInOut(duration: 0.2), value: status)
 
@@ -85,12 +87,11 @@ extension Binding where Value == String {
     }
 }
 
-@available(iOS 15.0, *)
+@available(iOS 17.0, *)
 struct OTPView_Previews: PreviewProvider {
     static var previews: some View {
-        OtpView(activeIndicatorColor: Color.black, inactiveIndicatorColor: Color.gray,  length: 4, doSomething: { value in
-            
+        OtpView(activeIndicatorColor: Color.black, inactiveIndicatorColor: Color.gray,  length: 6, doSomething: { value in
+            print(value)
         })
-        .padding()
     }
 }
