@@ -24,7 +24,6 @@ public struct OtpView:View {
             }
             .frame(maxWidth: .infinity)
         }
-        .padding(.horizontal)
         .background(content: {
             TextField("", text: $otpText.limit(length))
                 .keyboardType(.numberPad)
@@ -36,7 +35,6 @@ public struct OtpView:View {
                 .onChange(of: otpText) { newValue in
                     if newValue.count == length {
                         doSomething(newValue)
-                        isKeyboardShowing = false
                     }
                 }
                 .onAppear {
@@ -90,7 +88,7 @@ extension Binding where Value == String {
 @available(iOS 17.0, *)
 struct OTPView_Previews: PreviewProvider {
     static var previews: some View {
-        OtpView(activeIndicatorColor: Color.black, inactiveIndicatorColor: Color.gray,  length: 6, doSomething: { value in
+        OtpView(activeIndicatorColor: Color.teal, inactiveIndicatorColor: Color.gray,  length: 6, doSomething: { value in
             print(value)
         })
     }
