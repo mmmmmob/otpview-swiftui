@@ -23,7 +23,7 @@ public struct OtpView:View {
                 OTPTextBox(index)
             }
         }.background(content: {
-            TextField("", text: $otpText.limit(4))
+            TextField("", text: $otpText.limit(length))
                 .keyboardType(.numberPad)
                 .textContentType(.oneTimeCode)
                 .frame(width: 1, height: 1)
