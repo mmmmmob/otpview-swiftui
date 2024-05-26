@@ -8,7 +8,7 @@ public struct OtpView:View {
     private let doSomething: (String) -> Void
     private let length: Int
     
-    @State private var otpText = "087543"
+    @State private var otpText = ""
     @FocusState private var isKeyboardShowing: Bool
     
     public init(activeIndicatorColor:Color,inactiveIndicatorColor:Color, length:Int, doSomething: @escaping (String) -> Void) {
