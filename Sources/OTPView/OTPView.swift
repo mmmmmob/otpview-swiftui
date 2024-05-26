@@ -8,7 +8,7 @@ public struct OtpView:View {
     private let doSomething: (String) -> Void
     private let length: Int
     
-    @State private var otpText = ""
+    @State private var otpText = "087543"
     @FocusState private var isKeyboardShowing: Bool
     
     public init(activeIndicatorColor:Color,inactiveIndicatorColor:Color, length:Int, doSomething: @escaping (String) -> Void) {
@@ -18,11 +18,11 @@ public struct OtpView:View {
         self.doSomething = doSomething
     }
     public var body: some View {
-        HStack(spacing: 10) {
+        HStack(spacing: 0) {
             ForEach(0...length-1, id: \.self) { index in
                 OTPTextBox(index)
             }
-            .frame(maxWidth: 50)
+            .frame(maxWidth: .infinity)
         }
         .padding(.horizontal)
         .background(content: {
@@ -62,7 +62,7 @@ public struct OtpView:View {
                 Text(" ")
             }
         }
-        .fontDesign(.monospaced)
+        .font(.system(.largeTitle, design: .monospaced, weight: .semibold))
         .frame(width: 50, height: 80)
         .background {
             let status = (isKeyboardShowing && otpText.count == index)
@@ -71,7 +71,6 @@ public struct OtpView:View {
                 .animation(.easeInOut(duration: 0.2), value: status)
 
         }
-        .padding()
     }
 }
 
