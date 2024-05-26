@@ -22,7 +22,8 @@ public struct OtpView:View {
             ForEach(0...length-1, id: \.self) { index in
                 OTPTextBox(index)
             }
-        }.background(content: {
+        }
+        .background(content: {
             TextField("", text: $otpText.limit(length))
                 .keyboardType(.numberPad)
                 .textContentType(.oneTimeCode)
@@ -42,6 +43,7 @@ public struct OtpView:View {
                 }
         })
         .contentShape(Rectangle())
+        .padding(.vertical)
         .onTapGesture {
             isKeyboardShowing = true
         }
