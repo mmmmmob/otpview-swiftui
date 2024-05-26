@@ -43,7 +43,7 @@ public struct OtpView:View {
                 }
         })
         .contentShape(Rectangle())
-        .padding(.vertical)
+        .padding(.horizontal)
         .onTapGesture {
             isKeyboardShowing = true
         }
