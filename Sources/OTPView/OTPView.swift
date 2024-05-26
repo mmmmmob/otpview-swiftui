@@ -36,8 +36,8 @@ public struct OtpView:View {
                 .onChange(of: otpText) { newValue in
                     if newValue.count == length {
                         doSomething(newValue)
+                        isKeyboardShowing = false
                     }
-                    isKeyboardShowing = false
                 }
                 .onAppear {
                     DispatchQueue.main.async {
