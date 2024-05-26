@@ -37,6 +37,7 @@ public struct OtpView:View {
                     if newValue.count == length {
                         doSomething(newValue)
                     }
+                    isKeyboardShowing = false
                 }
                 .onAppear {
                     DispatchQueue.main.async {
