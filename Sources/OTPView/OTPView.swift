@@ -11,23 +11,23 @@ public struct OtpView:View {
     @State private var otpText = ""
     @FocusState private var isKeyboardShowing: Bool
     
-    public init(activeIndicatorColor:Color,inactiveIndicatorColor:Color, length:Int, doSomething: @escaping (String) -> Void) {
+    public init(activeIndicatorColor: Color, inactiveIndicatorColor: Color, length: Int, doSomething: @escaping (String) -> Void) {
         self.activeIndicatorColor = activeIndicatorColor
         self.inactiveIndicatorColor = inactiveIndicatorColor
         self.length = length
         self.doSomething = doSomething
     }
     public var body: some View {
-        HStack(spacing: 0) {
-            ForEach(0...length-1, id: \.self) { index in
+        HStack {
+            ForEach(0...length - 1, id: \.self) { index in
                 OTPTextBox(index)
+                    .frame(maxWidth: .infinity)
             }
-            .frame(maxWidth: .infinity)
         }
+        .frame(maxWidth: .infinity)
         .background(content: {
             TextField("", text: $otpText.limit(length))
                 .keyboardType(.numberPad)
-                .textContentType(.oneTimeCode)
                 .frame(width: 1, height: 1)
                 .opacity(0.001)
                 .blendMode(.screen)
@@ -61,13 +61,13 @@ public struct OtpView:View {
                 Text(" ")
             }
         }
-        .font(.system(.largeTitle, design: .monospaced, weight: .semibold))
         .frame(width: 50, height: 80)
+        .font(.system(.largeTitle, design: .monospaced, weight: .medium))
         .background {
             let status = (isKeyboardShowing && otpText.count == index)
             RoundedRectangle(cornerRadius: 4, style: .continuous)
                 .stroke(status ? activeIndicatorColor : inactiveIndicatorColor)
-                .animation(.easeInOut(duration: 0.2), value: status)
+                .animation(.easeInOut(duration: 0.3), value: status)
 
         }
     }
