@@ -26,7 +26,7 @@ public struct OtpView:View {
         }
         .frame(maxWidth: .infinity)
         .background(content: {
-            TextField("", text: $otpText.limit(length))
+            TextField("", text: $otpText)
                 .keyboardType(.numberPad)
                 .frame(width: 1, height: 1)
                 .opacity(0.001)
