@@ -35,6 +35,8 @@ public struct OtpView:View {
                 .onChange(of: otpText) { newValue in
                     if newValue.count == length {
                         doSomething(newValue)
+                    } else if newValue.count > length {
+                        otpText = String(newValue.prefix(length))
                     }
                 }
                 .onAppear {
@@ -68,7 +70,7 @@ public struct OtpView:View {
             RoundedRectangle(cornerRadius: 4, style: .continuous)
                 .stroke(status ? activeIndicatorColor : inactiveIndicatorColor)
                 .animation(.easeInOut(duration: 0.3), value: status)
-
+            
         }
     }
 }
