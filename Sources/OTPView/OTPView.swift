@@ -35,7 +35,7 @@ public struct OtpView:View {
                 .onChange(of: otpText) { newValue in
                     if newValue.count == length {
                         doSomething(newValue)
-                    } else if newValue.count > length {
+                    } else if newValue.count < length {
                         otpText = String(newValue.prefix(length))
                     }
                 }
